@@ -5,7 +5,7 @@ orbs:
 
 jobs:
   docker_publish:
-    jobs:
+    steps:
       - docker/publish:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
           tag: 'latest'
