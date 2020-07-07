@@ -5,6 +5,7 @@ orbs:
 
 jobs:
   docker_publish:
+    executor: docker/machine
     steps:
       - docker/publish:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
