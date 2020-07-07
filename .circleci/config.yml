@@ -1,9 +1,33 @@
 version: 2.1
 orbs:
   docker: circleci/docker@1.0.0
-workflows:
-  deploy:
+  heroku: circleci/heroku@0.0.10. # Invoke the Heroku orb
+
+jobs:
+  docker_publish:
     jobs:
       - docker/publish:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
           tag: 'latest'
+  heroku_deploy:
+    executor: heroku/default
+    steps:
+      - heroku/install
+      - docker/publish:
+          image: $HEROKU_APP_NAME/web
+          registry: registry.heroku.com
+      - run:
+          name: Deploy Heroku Docker Container
+          command: >
+            heroku container:release web -a $HEROKU_APP_NAME
+#      - setup_remote_docker
+#      - run:
+#          command: >            
+#      - heroku/deploy-via-git
+
+workflows:
+  deploy:
+    jobs:
+#      - docker_publish
+      - heroku_deploy
+
