@@ -11,7 +11,8 @@ jobs:
           image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
           tag: 'latest'
   heroku_deploy:
-    executor: heroku/default
+#    executor: heroku/default
+    executor: docker/machine
     steps:
       - heroku/install
       - docker/publish:
