@@ -21,10 +21,8 @@ jobs:
           name: Deploy Heroku Docker Container
           command: >
             heroku container:login && heroku container:release web -a $HEROKU_APP_NAME
-#      - setup_remote_docker
 
 workflows:
   deploy:
     jobs:
       - heroku_deploy
-#      - heroku/deploy-via-git
