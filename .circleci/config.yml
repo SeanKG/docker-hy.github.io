@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Deploy Heroku Docker Container
           command: >
-            heroku container:login && heroku container:release web -a $HEROKU_APP_NAME
+            heroku container:login && heroku container:release web:latest -a $HEROKU_APP_NAME
 
 workflows:
   deploy:
