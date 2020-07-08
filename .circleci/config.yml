@@ -8,7 +8,12 @@ jobs:
     executor: docker/machine
     steps:
       - heroku/install
-      - docker/publish:
+      - checkout
+      - docker/check
+      - docker/build:
+          image: $HEROKU_APP_NAME/web
+          registry: registry.heroku.com
+      - docker/push:
           image: $HEROKU_APP_NAME/web
           registry: registry.heroku.com
       - run:
