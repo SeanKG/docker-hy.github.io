@@ -31,5 +31,12 @@ workflows:
   deploy:
     jobs:
 #      - docker_publish
-      - heroku_deploy
-
+#      - heroku_deploy
+      - heroku/install
+      - docker/publish:
+          image: $HEROKU_APP_NAME/web
+          registry: registry.heroku.com
+      - run:
+          name: Deploy Heroku Docker Container
+          command: >
+            heroku container:release web -a $HEROKU_APP_NAME
