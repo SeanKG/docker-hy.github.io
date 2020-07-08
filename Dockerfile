@@ -16,4 +16,6 @@ RUN jekyll build
 
 FROM nginx:alpine
 
+COPY templates/default.conf.template /etc/nginx/templates/default.conf.template
+
 COPY --from=build-stage /usr/src/app/_site/ /usr/share/nginx/html
