@@ -9,7 +9,8 @@ jobs:
     steps:
       - heroku/install
       - checkout
-      - docker/check
+      - docker/check:
+          registry: registry.heroku.com
       - docker/build:
           image: $HEROKU_APP_NAME/web
           registry: registry.heroku.com
