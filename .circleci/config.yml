@@ -30,8 +30,8 @@ jobs:
 workflows:
   deploy:
     jobs:
-      - docker/publish:
       - heroku/install
+      - docker/publish:
           image: $HEROKU_APP_NAME/web
           registry: registry.heroku.com
       - run:
